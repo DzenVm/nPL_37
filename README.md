@@ -34,7 +34,7 @@ Skopiuj `.env.example` do `.env.local` i uzupełnij:
 
 | Zmienna | Wymagana | Opis |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | tak przed produkcją | Docelowa domena serwisu. Jedyne miejsce w kodzie, które trzeba podmienić — wpływa na metadane SEO, dane strukturalne, `sitemap.xml` i adres kontaktowy (`kontakt@<domena>`). Bez ustawienia serwis działa z placeholderem `twoja-domena.pl`. |
+| `NEXT_PUBLIC_SITE_URL` | zalecana | Docelowa domena serwisu. Wpływa na metadane SEO, dane strukturalne, `sitemap.xml` i adres kontaktowy (`kontakt@<domena>`). Domyślnie (bez ustawienia) kod używa `https://maetuwe.website` — ustaw ją jawnie w Vercel, żeby domenę dało się później zmienić bez edycji kodu. |
 | `RESEND_API_KEY` | nie | Klucz API [Resend](https://resend.com) do wysyłki e-maili ze zgłoszeń z formularza kontaktowego. Bez niego zgłoszenia trafiają wyłącznie do logów serwera (Vercel → Logs) — formularz nadal przyjmuje zgłoszenia i zwraca sukces. |
 | `CONTACT_TO_EMAIL` | nie | Nadpisuje adres odbiorcy zgłoszeń (domyślnie `kontakt@<domena>`). |
 | `CONTACT_FROM_EMAIL` | nie | Nadpisuje adres nadawcy w wysyłce przez Resend. |
@@ -58,17 +58,17 @@ npm run build       # build produkcyjny
 
 1. Zaimportuj repozytorium w Vercel (framework zostanie wykryty automatycznie
    jako Next.js — nie jest wymagany dodatkowy plik konfiguracyjny).
-2. W ustawieniach projektu dodaj zmienną `NEXT_PUBLIC_SITE_URL` z docelową
-   domeną (patrz tabela wyżej) — bez niej metadane i mapa strony będą
-   wskazywać na placeholder.
+2. W ustawieniach projektu dodaj zmienną `NEXT_PUBLIC_SITE_URL=https://maetuwe.website`
+   (patrz tabela wyżej).
 3. Opcjonalnie dodaj `RESEND_API_KEY`, jeśli formularz kontaktowy ma wysyłać
    e-maile, a nie tylko logować zgłoszenia.
-4. Podłącz docelową domenę w zakładce Domains i upewnij się, że
-   `NEXT_PUBLIC_SITE_URL` dokładnie ją odzwierciedla (wraz z `https://`).
+4. Podłącz domenę `maetuwe.website` w zakładce Domains projektu na Vercel
+   (Settings → Domains) i skonfiguruj u rejestratora domeny wpisy DNS, które
+   Vercel wskaże po jej dodaniu.
 
 ## Przed uruchomieniem kampanii Google Ads
 
-- Uzupełnij `NEXT_PUBLIC_SITE_URL` docelową domeną.
+- Ustaw `NEXT_PUBLIC_SITE_URL=https://maetuwe.website` w Vercel (patrz wyżej).
 - Strony `/polityka-prywatnosci` i `/regulamin` odwołują się do „podmiotu
   prowadzącego serwis dostępny pod adresem [domena]" zamiast do nazwy firmy —
   jeśli prowadzisz działalność pod konkretną nazwą/NIP-em, warto to doprecyzować

@@ -1,7 +1,4 @@
-// Jedyne dopuszczalne "zaślepki" w całym serwisie dotyczą domeny — do czasu,
-// aż zostanie ona ostatecznie ustalona. Wszystko inne w treści jest docelowe.
-
-const FALLBACK_HOST = "twoja-domena.pl";
+const FALLBACK_HOST = "maetuwe.website";
 
 function resolveHost(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL;
